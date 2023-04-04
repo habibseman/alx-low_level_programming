@@ -1,22 +1,37 @@
 #include "lists.h"
 
 /**
- * find_listint_loop - A function that finds the loop in a list
- * @head: A pointer to listint_t structure
- * Return: The address of the node where the loop start, or NULL
+ * find_listint_loop - find loop in linked list
+ * @head: pointer to head pointer of linked list
+ * Return: address of node where loop starts
  */
+
 listint_t *find_listint_loop(listint_t *head)
 {
-	listint_t *one = head, *two = head;
+	listint_t *banana, *hare;
 
-	while (one && two && two->next)
+	/* determine if loop exists by seeing if banana and hare meets */
+	/* start them at head, move banana one node and hare two nodes */
+	banana = hare = head;
+
+	while (banana != NULL && hare != NULL)
 	{
-		one = one->next;
-		two = two->next->next;
-		if (one == two)
+		banana = banana->next;
+		hare = hare->next->next;
+
+		if (banana == hare)
 		{
-			return (one);
+			/* start banana at head and hare at address they met */
+			/* move banana and hare one node to find loop origin */
+			banana = head;
+			while (banana != hare)
+			{
+				banana = banana->next;
+				hare = hare->next;
+			}
+			return (banana);
 		}
 	}
+
 	return (NULL);
 }
