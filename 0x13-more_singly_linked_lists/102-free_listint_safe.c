@@ -9,7 +9,7 @@ size_t free_listint_safe(listint_t **h);
  * @head: A pointer to the head of the listint_t.
  *
  * Return: If the list is not looped - 0.
- *         Otherwise - the number of unique nodes in the list.
+ *         Otherwise -return the number of unique nodes in the list.
  */
 size_t looped_listint_count(listint_t *head)
 {
